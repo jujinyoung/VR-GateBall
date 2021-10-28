@@ -10,17 +10,20 @@ public class ControllerInterAction : MonoBehaviour
     public SteamVR_Behaviour_Pose controllerPose;
     public SteamVR_Action_Boolean interAction;
     public Transform dot;
+    [HideInInspector]
+    public bool actionCheck = true;
     
    private void Update() {
-        Ray ray = new Ray(controllerPose.transform.position,controllerPose.transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit)){
+        if (Physics.Raycast(controllerPose.transform.position,controllerPose.transform.forward,out hit,15f)){
             if (hit.transform.gameObject.layer == LayerMask.NameToLayer("UI")){
+                actionCheck = false;
                 dot.gameObject.SetActive(true);
                 dot.position = hit.point;
             }
             else{
                 dot.gameObject.SetActive(false);
+                actionCheck = true;
             }  
             if(dot.gameObject.activeSelf){
                 if(interAction.GetStateDown(handType)){

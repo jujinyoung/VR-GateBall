@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {   
-    bool check = true;
     [SerializeField]
     GameObject gate;
     private void OnTriggerEnter(Collider other) {
@@ -12,13 +11,13 @@ public class Gate : MonoBehaviour
             switch(gate.name){
                 case "gate1":
                     if(TutorialManager.instance.state == State.gate1){
-                        StartCoroutine(CollideGate(State.gate2));
+                        StartCoroutine(CollideGate(State.spark1));
                         TutorialManager.instance.Score += 1;
                     }
                     break;
                 case "gate2":
                     if(TutorialManager.instance.state == State.gate2){
-                        StartCoroutine(CollideGate(State.gate3));
+                        StartCoroutine(CollideGate(State.spark2));
                         TutorialManager.instance.Score += 1;
                     }
                     break;
@@ -28,7 +27,7 @@ public class Gate : MonoBehaviour
                         TutorialManager.instance.Score += 1;
                     }
                     break;
-                case "GoalPoal" :
+                case "pole" :
                     if(TutorialManager.instance.state == State.GoalPoal){
                         TutorialManager.instance.Score += 2;
                     }

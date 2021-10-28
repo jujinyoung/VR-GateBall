@@ -65,6 +65,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean RotationObj
+        {
+            get
+            {
+                return SteamVR_Actions.default_RotationObj;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get
