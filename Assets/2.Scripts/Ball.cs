@@ -42,6 +42,7 @@ public class Ball : MonoBehaviour
         }
         if(col.gameObject.tag == "STICK")
         {
+            Haptic.instance.PlayVibration();
             audioSource.Play();
             stickcolcheck = true;
         }
