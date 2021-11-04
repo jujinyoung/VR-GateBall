@@ -17,7 +17,7 @@ public class PhotonInit : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Awake()
     {
-        Screen.SetResolution(1280,720,false);
+        // Screen.SetResolution(1280,720,false);
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
@@ -36,6 +36,7 @@ public class PhotonInit : MonoBehaviourPunCallbacks
 
     public void OnLogin()
     {
+        Debug.Log("로그인실행");
         PhotonNetwork.GameVersion = this.gameVersion;
         PhotonNetwork.ConnectUsingSettings();
 
@@ -61,32 +62,27 @@ public class PhotonInit : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("ROOM"))
-        {
-            Destroy(obj);
-        }
+        // foreach(GameObject obj in GameObject.FindGameObjectsWithTag("ROOM"))
+        // {
+        //     Destroy(obj);
+        // }
         foreach(RoomInfo roomInfo in roomList)
         {
             Debug.Log("실행");
             GameObject _room = Instantiate(room, gridTr);
-            RoomData roomData = _room.GetComponent<RoomData>();
-            roomData.roomName = roomInfo.Name;
-            roomData.maxPlayer = roomInfo.MaxPlayers;
-            roomData.playerCount = roomInfo.PlayerCount;
-            roomData.UpdateInfo();
-            roomData.GetComponent<Button>().onClick.AddListener
+            _room.GetComponent<Button>().onClick.AddListener
             (
                 delegate
                 {
-                    OnClickRoom(roomData.roomName);
+                    OnClickRoom();
                 }
             );
         }
     }
 
-    void OnClickRoom(string roomName)
+    void OnClickRoom()
     {
-        PhotonNetwork.JoinRoom(roomName, null);
+        PhotonNetwork.JoinRandomRoom();
     }
 
     public void Backspace()

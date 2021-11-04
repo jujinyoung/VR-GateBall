@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4767420264811143739}
   - component: {fileID: -7834028823791132250}
   - component: {fileID: 2945018896409250547}
+  - component: {fileID: 1562062413773441773}
   m_Layer: 0
   m_Name: ball3
   m_TagString: BALL
@@ -112,3 +113,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.037499998
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1562062413773441773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338411188850202623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9753a8b7a942d0344a3cd25a111a04d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0, z: 0}

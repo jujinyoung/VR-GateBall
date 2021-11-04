@@ -11,6 +11,7 @@ TagManager:
   - FxTemporaire
   - Bullet
   - BUTTON
+  - ROOM
   layers:
   - Default
   - TransparentFX

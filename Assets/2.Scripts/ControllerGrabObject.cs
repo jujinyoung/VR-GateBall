@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
+
 public class ControllerGrabObject : MonoBehaviour
 {
     public SteamVR_Input_Sources handType;
@@ -20,7 +21,7 @@ public class ControllerGrabObject : MonoBehaviour
         if(grabAction.GetLastStateDown(handType)){
             if(collidingObject)
             {
-                if(grapcheck && gameObject.GetComponent<ControllerInterAction>().actionCheck){
+                if(grapcheck){
                     ReleaseObject();
                     return;
                 }
@@ -67,7 +68,7 @@ public class ControllerGrabObject : MonoBehaviour
 
         var joint = AddFixedJoint();
         joint.connectedBody = objectHand.GetComponent<Rigidbody>();
-        if(TutorialManager.instance.state == State.gameStart){
+        if(TutorialManager.instance.state == State.gameStart && objectHand.tag == "STICK"){
             TutorialManager.instance.state = State.gate1;  
             TutorialManager.instance.Fadestart(); 
         }
