@@ -11,10 +11,6 @@ public class Ball2 : MonoBehaviour
         { 
             StartCoroutine(Respark());
         }
-        if(other.gameObject.tag == "BALL")
-        {
-            Haptic.instance.PlayVibration();
-        }
     }
     IEnumerator Respark()
     {

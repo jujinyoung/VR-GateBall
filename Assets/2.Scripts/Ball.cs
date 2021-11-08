@@ -6,28 +6,28 @@ public class Ball : MonoBehaviour
 {
     [HideInInspector]
     public bool ballspark = true;
-    bool stickcolcheck = false;
+    // bool stickcolcheck = false;
     AudioSource audioSource;
     private void Start() {
         audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void Update() {
-        if(stickcolcheck){
-            if(gameObject.GetComponent<Rigidbody>().velocity == Vector3.zero)
-            {
-                if(TutorialManager.instance.state == State.gate1)
-                {
-                    gameObject.transform.position = new Vector3(11.53f,0.03639915f,-10f);
-                }
-                TutorialManager.instance.Fadestart();
-                stickcolcheck = false;
-            }
-            if(gameObject.GetComponent<Rigidbody>().velocity.magnitude<0.05f)
-            {
-                StopMove(gameObject);
-            }
-        }
+        // if(stickcolcheck){
+        //     if(gameObject.GetComponent<Rigidbody>().velocity == Vector3.zero)
+        //     {
+        //         if(TutorialManager.instance.state == State.gate1)
+        //         {
+        //             gameObject.transform.position = new Vector3(11.53f,0.03639915f,-10f);
+        //         }
+        //         TutorialManager.instance.Fadestart();
+        //         stickcolcheck = false;
+        //     }
+        //     if(gameObject.GetComponent<Rigidbody>().velocity.magnitude<0.05f)
+        //     {
+        //         StopMove(gameObject);
+        //     }
+        // }
     }
     private void OnCollisionEnter(Collision col) {
         if(col.gameObject.tag == "BALL")
@@ -42,9 +42,10 @@ public class Ball : MonoBehaviour
         }
         if(col.gameObject.tag == "STICK")
         {
-            Haptic.instance.PlayVibration();
+            gameObject.GetComponent<Haptic>().PlayVibration();
+            StartCoroutine(Balltimer());
             audioSource.Play();
-            stickcolcheck = true;
+            // stickcolcheck = true;
         }
         
     }
@@ -63,4 +64,18 @@ public class Ball : MonoBehaviour
         obj.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
+    IEnumerator Balltimer()
+    {
+        yield return new WaitForSeconds(5.0f);
+        StopMove(gameObject);
+        if(gameObject.GetComponent<Rigidbody>().velocity == Vector3.zero)
+            {
+                if(TutorialManager.instance.state == State.gate1)
+                {
+                    gameObject.transform.position = new Vector3(11.53f,0.03639915f,-10f);
+                }
+                TutorialManager.instance.Fadestart();
+                // stickcolcheck = false;
+            }
+    }
 }

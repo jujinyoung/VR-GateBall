@@ -22,6 +22,7 @@ public class TutorialManager : MonoBehaviour
     private GameObject sneakerinstance;
     public GameObject leftlayser,rightlayser;
     GameObject colball;
+    public bool grcheck;
     private void Awake() {
         if (instance == null)
         {
@@ -104,6 +105,7 @@ public class TutorialManager : MonoBehaviour
         }
         leftlayser.SetActive(false);
         rightlayser.SetActive(false);
+        grcheck = false;
     }
     public void SparkAttack(GameObject ball1,GameObject ball2, Vector3 pos){
         sneakerinstance = Instantiate(sneakers,pos,Quaternion.identity);
@@ -140,6 +142,7 @@ public class TutorialManager : MonoBehaviour
         UI[(int)board].SetActive(true);
         leftlayser.SetActive(true);
         rightlayser.SetActive(true);
+        grcheck  = true;
     }
 
     public void BackToMain(){

@@ -16,6 +16,7 @@ public class ControllerInterAction : MonoBehaviour
     private GameObject currentObject;   // 가장 최근에 충돌한 객체를 저장하기 위한 객체
  
     public float raycastDistance = 100f; // 레이저 포인터 감지 거리
+    public AudioSource audioSource;
  
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,7 @@ public class ControllerInterAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        audioSource.volume = SoundManager.instance.soundeffect;
         layser.SetPosition(0, transform.position); // 첫번째 시작점 위치
                                                    // 업데이트에 넣어 줌으로써, 플레이어가 이동하면 이동을 따라가게 된다.
         //  선 만들기(충돌 감지를 위한)
@@ -52,6 +54,7 @@ public class ControllerInterAction : MonoBehaviour
             {
                 if(interAction.GetLastStateDown(handType))
                 {
+                    audioSource.Play();
                     // 버튼에 등록된 onClick 메소드를 실행한다.
                     Collided_object.collider.gameObject.GetComponent<Button>().onClick.Invoke();
                 }

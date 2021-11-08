@@ -21,7 +21,8 @@ public class ControllerGrabObject : MonoBehaviour
         if(grabAction.GetLastStateDown(handType)){
             if(collidingObject)
             {
-                if(grapcheck){
+                if(grapcheck && TutorialManager.instance.grcheck == false){
+                    Debug.Log("놓기");
                     ReleaseObject();
                     return;
                 }
@@ -66,6 +67,10 @@ public class ControllerGrabObject : MonoBehaviour
         objectHand = collidingObject;   //잡은 객체 설정
         collidingObject = null; //충돌 객체 해제
 
+        // objectHand.transform.parent = gameObject.transform;
+        // objectHand.transform.position = gameObject.transform.GetChild(2).position;
+        // objectHand.transform.rotation = gameObject.transform.GetChild(2).rotation;
+
         var joint = AddFixedJoint();
         joint.connectedBody = objectHand.GetComponent<Rigidbody>();
         if(TutorialManager.instance.state == State.gameStart && objectHand.tag == "STICK"){
@@ -86,6 +91,11 @@ public class ControllerGrabObject : MonoBehaviour
             GetComponent<FixedJoint>().connectedBody = null;
             Destroy(GetComponent<FixedJoint>());
         }
+        StartCoroutine(GrapCheck());
+    }
+
+    IEnumerator GrapCheck(){
+        yield return new WaitForSeconds(1.0f);
         grapcheck = false;
         objectHand = null;
     }

@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc3074833a79b246b7a6f5dc6054ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gate: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1357076762738278975
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +123,6 @@ GameObject:
   - component: {fileID: 6446507167518601573}
   - component: {fileID: 232773306619740483}
   - component: {fileID: 232773306619740482}
-  - component: {fileID: 7980381835966420074}
   m_Layer: 0
   m_Name: gate1
   m_TagString: Untagged
@@ -219,15 +220,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04763958, y: 0.16213997, z: 0.044602823}
   m_Center: {x: -0.0015183836, y: -0.15093005, z: 0}
---- !u!114 &7980381835966420074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357076762738278975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dc3074833a79b246b7a6f5dc6054ecd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
