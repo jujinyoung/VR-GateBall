@@ -7,9 +7,6 @@ public class Gate : MonoBehaviour
     [SerializeField]
     GameObject gate;
     public AudioSource audioSource;
-    private void Start() {
-        audioSource.volume = gameObject.transform.Find("SoundManager").GetComponent<SoundManager>().soundeffect;
-    }
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("BALL")){
             Debug.Log("부딧힘");
